@@ -1,0 +1,47 @@
+{
+  "name": "vota",
+  "version": "0.0.1",
+  "description": "QA voting software",
+  "main": "index.js",
+  "scripts": {
+    "build-js": "browserify js/ -t babelify -o lib/bundle.js",
+    "watch-js": "watchify js/* -t babelify -o lib/bundle.js -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aidanie/vota.git"
+  },
+  "keywords": [
+    "voting",
+    "qa",
+    "software"
+  ],
+  "author": "Aidan Church",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Aidanie/vota/issues"
+  },
+  "homepage": "https://github.com/Aidanie/vota#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "jquery": "^2.2.3",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "redis": "^2.5.3",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "watchify": "^3.7.0"
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  }
+}

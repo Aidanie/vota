@@ -1,17 +1,29 @@
-var express = require('express')
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-app.use(express.static(__dirname));
+var express = require('express'),
+app = express(),
+server = require('http').createServer(app),
+io =  require('socket.io').listen(server),
+port = process.env.PORT || 3000,
+winston = require('winston');
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+server.listen(port, function(){
+  winston.log("Server listening at port %d", port);
 });
 
+app.use(express.static("public"));
+
 io.on('connection', function(socket){
-  console.log("a user connected");
+  winston.debug("A user has connected");
+  socket.on('join', function(msg){
+    var room = msg.room;
+    socket.join(room);
+    winston.debug("A user has joined room= " + room);
+  });
 
   socket.on('disconnect', function(){
-    console.log("a user disconnected");
+    winston.debug("a user has disconnected");
+  });
+
+  socket.on('error', function(e){
+    winston.error("An error has occurred ", e);
   });
 });
